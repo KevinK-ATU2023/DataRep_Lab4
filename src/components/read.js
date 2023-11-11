@@ -7,7 +7,7 @@ function Read(){
     const [bookStorage, setBook] = useState([]);
 
     useEffect(() => {
-        axios.get('https://jsonblob.com/api/jsonblob/1161593332966481920')
+        axios.get('http://localhost:4000/api/books')
         .then((res) => {
             // console.log(res.data.books);
             setBook(res.data.books);
@@ -20,10 +20,6 @@ function Read(){
             <Books theBooks={bookStorage}/>
         </div>
     );
-}
-
-function setBook() {
-
 }
 
 export default Read;

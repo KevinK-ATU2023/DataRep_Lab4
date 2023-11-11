@@ -11,6 +11,7 @@ function Navigation_Bar() {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/read">Read</Nav.Link>
                     <Nav.Link href="/create">Create</Nav.Link>
+                    <Nav.Link href="http://localhost:4000/api/books">Books API</Nav.Link>
                 </Nav>
             </Container>
       </Navbar>

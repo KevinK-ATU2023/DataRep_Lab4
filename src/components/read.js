@@ -9,8 +9,11 @@ function Read(){
     useEffect(() => {
         axios.get('http://localhost:4000/api/books')
         .then((res) => {
-            // console.log(res.data.books);
-            setBook(res.data.books);
+            // console.log(res.data);
+            setBook(res.data);
+        })
+        .catch((e) => {
+            console.log(e)
         })
     },)
 

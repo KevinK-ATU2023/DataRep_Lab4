@@ -1,13 +1,24 @@
 import { useState } from "react";
-
+import axios from "axios";
 
 function Create() {
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [front_url, setFrontURL] = useState("");
 
-    function log_details() {
-        console.log(`Title: ${title}\nAuthor: ${author}\nFront Page URL: ${front_url}`)
+    function submit_details() {
+        // console.log(`Title: ${title}\nAuthor: ${author}\nFront Page URL: ${front_url}`)
+
+        let book = {
+            title: title,
+            cover: front_url,
+            author: author
+        }
+
+
+        axios.post('http://localhost:4000/api/books', book)
+        .then((res) => console.log(res.data))
+        .catch ((e) => console.log(e))
     }
 
     return(
@@ -20,7 +31,7 @@ function Create() {
                 <input type="text" value={author} placeholder="Author" onChange={(e) => {setAuthor(e.target.value)}}/><br></br>
                 <label >Add Front Page Url:</label><br></br>
                 <input type="text" value={front_url} placeholder="URL" onChange={(e) => {setFrontURL(e.target.value)}}/><br></br>
-                <button onClick={log_details} >Submit</button><br></br>
+                <button onClick={submit_details} >Submit</button><br></br>
             </form>
         </div>
     );

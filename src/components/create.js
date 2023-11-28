@@ -1,7 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Create() {
+    const navigate = useNavigate();
+
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [front_url, setFrontURL] = useState("");
@@ -17,7 +20,10 @@ function Create() {
 
 
         axios.post('http://localhost:4000/api/books', book)
-        .then((res) => console.log(res.data))
+        .then((res) => {
+            // console.log(res.data);
+            navigate('/read');
+        })
         .catch ((e) => console.log(e))
     }
 

@@ -48,12 +48,6 @@ app.get('/api/books', async (req, res) => {
     res.json(books)
 })
 
-app.get('/api/books/:id', async (req, res)=>{
-    // console.log(req.params.id);
-    let book = await book_model.findById({_id:req.params.id})
-    res.send(book);
-})
-
 // books api post request 
 app.post('/api/books', (req, res) => {
     // console.log(`Title: ${req.body.title}\nISBN: ${req.body.code}\nPoster URL: ${req.body.poster_url}`)
@@ -64,11 +58,31 @@ app.post('/api/books', (req, res) => {
         cover: req.body.cover,
         author: req.body.author
     }).then(() => {
-        res.send('Data recieved')
-    }).catch(() => {
-        res.send('Data not recieved')
+        console.log(`Data Received\n
+        Title: ${req.body.title}\n
+        Author: ${req.body.author}
+        Cover URL: ${req.body.cover}`)
     })
     res.redirect('http://localhost:3000/read')
+})
+
+app.get('/api/books/:id', async (req, res)=>{
+    // console.log(req.params.id);
+    let book = await book_model.findById({_id:req.params.id})
+    res.send(book);
+})
+
+app.put('/api/books/:id', async (req, res)=>{
+    console.log("Update: "+req.params.id);
+    // console.log(req.body)
+    let book = await book_model.findByIdAndUpdate(req.params.id, req.body, {new:true});
+    console.log(book);
+})
+
+app.post('/api/books/delete/:id', async (req, res) => {
+    console.log('Deleted: ' +req.params.id);
+    let book = await book_model.findByIdAndDelete(req.params.id)
+    console.log(book);
 })
 
 app.listen(port, () => {

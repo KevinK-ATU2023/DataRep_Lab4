@@ -7,6 +7,7 @@ import Create from './components/create';
 import Navigation_Bar from './components/navigation';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Edit from './components/edit';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Content />}></Route>
           <Route path="/read" element={<Read />}></Route>
           <Route path="/create" element={<Create />}></Route>
+          <Route path="/edit/:id" element={<Edit />}></Route>
         </Routes>
       </div>
     </BrowserRouter>
